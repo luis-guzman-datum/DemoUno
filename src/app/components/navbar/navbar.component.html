@@ -1,0 +1,22 @@
+<nav class="blue">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">SEFIN - {{titulo}} </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a [routerLink]="['/']" routerLinkActive="active-a" [routerLinkActiveOptions]="{exact: true}">
+          Personas
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/impuestos']" routerLinkActive="active-a" [routerLinkActiveOptions]="{exact: true}">
+          Impuestos
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/saludo']" routerLinkActive="active-a" [routerLinkActiveOptions]="{exact: true}">
+          Saludo
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

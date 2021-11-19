@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel blue">
+            <div class="row">
+                <div class="col s4">
+                    <p class="center white-text">
+                        <i class="material-icons" [ngStyle]="{'font-size': '100px'}" >
+                            {{persona.icono}}
+                        </i>
+                    </p>
+                </div>
+                <div class="col s8 white-text">
+                    <h3>Bienvenido</h3>
+                    <h5>{{persona.nombre}}</h5>
+
+                    <div class="col s12">
+                        <button type="button" class="btn blue darken-3" (click)="enviar(persona.nombre)" >Enviar al padre</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

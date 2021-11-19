@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1>Paginas de personas</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore molestias architecto corrupti, nulla
+                voluptatum dolorem facere suscipit voluptates reiciendis maiores atque enim itaque odio rerum ipsam
+                libero consequuntur adipisci. Hic!
+            </p>
+            <button type="button" class="btn orange" (click)="cambiarPantalla()">Cambiar</button>
+        </div>
+    </div>
+    <div *ngIf="pantalla=='agregar'" class="row">
+        <div class="col s12">
+            <form class="row">
+                <div class="input-field col s12">
+                    <h4>Registro de personas</h4>
+                </div>
+                <div class="input-field col s12">
+                    <input id="nombre" name="nombre" [(ngModel)]="nombre" type="text" class="validate">
+                    <label for="nombre">Nombres</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="apellidos" name="apellidos" [(ngModel)]="apellidos" type="text" class="validate">
+                    <label for="apellidos">Apellidos</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="edad" name="edad" [(ngModel)]="edad" type="number" class="validate">
+                    <label for="edad">Edad</label>
+
+                </div>
+
+                <div class="input-field col s12">
+                    <p class="red-text">{{error}}</p>
+                </div>
+
+                <div class="input-field col s4">
+                    <button type="button" class="btn blue col s12" (click)="agregar()">Agregar</button>
+                </div>
+                <div class="input-field col s4">
+                    <button type="button" (click)="limpiar()" class="btn red col s12">Limpiar</button>
+                </div>
+
+ 
+
+            </form>
+        </div>
+    </div>
+    <div *ngIf="pantalla=='lista'"  class="row">
+        <div class="col s12">
+            <h5>Lista de personas ({{listaPersonas.length}})</h5>    
+        </div>
+        <div class="col s12">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of listaPersonas">
+                        <td>{{p.nombre}}</td>
+                        <td>{{p.apellidos}}</td>
+                        <td>{{p.edad}}</td>
+                    </tr>
+                    <tr *ngIf="listaPersonas.length==0">
+                        <td>No hay registros</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

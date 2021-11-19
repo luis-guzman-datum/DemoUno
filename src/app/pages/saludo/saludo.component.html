@@ -1,0 +1,14 @@
+<app-navbar [titulo]='titulo'></app-navbar>
+
+<p>saludo works!</p>
+
+<div class="container">
+    <app-presentacion [persona]="persona" (output)="metodoParaRecibirValorDelHijo($event)"></app-presentacion>
+    <hr>
+
+    <app-presentacion *ngFor="let p of personas" [persona]="p" (output)="metodoParaRecibirValorDelHijo($event)" ></app-presentacion>
+
+
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

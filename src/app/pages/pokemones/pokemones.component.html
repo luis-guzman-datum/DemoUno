@@ -1,0 +1,67 @@
+<app-navbar [titulo]="'Pokemons'"></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1>Lista de pokemons</h1>
+        </div>
+        <div class="col s12">
+            <input type="text" name="buscar" id="buscar" [(ngModel)]="buscar" (ngModelChange)="pagina1=1"
+                placeholder="Buscar">
+        </div>
+
+        <div class="col s12">
+            <table class="responsive-table striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Link</th>
+                        <th>Ver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let p of (listaPokemons | filter: buscar) | paginate : {itemsPerPage : 5, currentPage:pagina1} ">
+                        <td>{{p.name}}</td>
+                        <td>
+                            <a href="{{p.url}}">Ver información</a>
+                        </td>
+                        <td>
+                            <a (click)="getInfoPokemon(p.url)" class="waves-effect waves-light btn blue"
+                               >
+                                <i class="material-icons">
+                                    visibility
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr
+                        *ngIf="((listaPokemons |filter: buscar) | paginate : {itemsPerPage : 5, currentPage:pagina1}).length==0">
+                        <td>No hay registros...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="center"
+                *ngIf="((listaPokemons |filter: buscar) | paginate : {itemsPerPage : 5, currentPage:pagina1}).length!=0">
+                <pagination-controls (pageChange)="pagina1 = $event"></pagination-controls>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>{{infoPokemon?.name | uppercase}}</h4>
+        <p>Este pokemon tiene las siguientes habilidades:</p>
+
+        <ul>
+            <li *ngFor="let p of infoPokemon?.abilities"> {{p.ability.name }} </li>
+        </ul>
+
+    </div>
+    <div class="modal-footer">
+        <a (click)="cerrarModal()" class="waves-effect waves-green btn-flat">Salir</a>
+    </div>
+</div>

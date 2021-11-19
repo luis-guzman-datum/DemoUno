@@ -1,0 +1,98 @@
+<app-navbar [titulo]="titulo" *ngIf="cargando==false"></app-navbar>
+
+<div *ngIf="cargando==false" class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1>Pantalla de impuestos</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis obcaecati nobis consequatur ad. Quasi
+                sint distinctio reiciendis repellat, ducimus natus, libero pariatur voluptate inventore porro, similique
+                eos enim quisquam animi?</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <form [formGroup]="impuestosForm" (ngSubmit)="agregar()" class="row">
+                <div class="input-field col s12">
+                    <input id="nombreImpuesto" formControlName="nombreImpuesto" type="text" class="validate">
+                    <label for="nombreImpuesto">Nombre de impuesto</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="porcentaje" formControlName="porcentaje" type="text" class="validate">
+                    <label for="porcentaje">Porcentaje</label>
+                </div>
+                <div class="input-field col s4">
+                    <button type="submit" class="btn blue col s12">Agregar</button>
+                </div>
+                <div class="input-field col s4">
+                    <button type="button" (click)="reset()" class="btn red col s12">Limpiar</button>
+                </div>
+            </form>
+        </div>
+        <!--  <div class="col s12">
+            <pre>{{impuestosForm.value|json}}</pre>
+            <hr>
+            <pre>{{listaImpuestos|json}}</pre>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <h2>Lista de Impuestos</h2>
+        </div>
+        <div class="col s12">
+            <input type="text" placeholder="Buscar" name="filtro" [(ngModel)]="filtro">
+        </div>
+        <div class="col s12">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombre de impuesto</th>
+                        <th>Porcentaje</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of listaImpuestos | filter : filtro">
+                        <td>{{i.nombreImpuesto}}</td>
+                        <td>{{i.porcentaje}}</td>
+                        <td>
+                            <button type="button" class="btn red" (click)="eliminar(i)">
+                                <i class="material-icons">
+                                    delete
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="(listaImpuestos | filter : filtro).length==0">
+                        <td>No hay registros</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+  
+
+    <div class="row">
+
+        <div class="col s12">
+            <input type="text" placeholder="dd/mm/yyyy" class="datepicker">
+        </div>
+
+        <div class="col s12">
+            <input type="text" mask="0000 0000" prefix="+504 " placeholder="+504 0000 0000" />
+        </div>
+        <div class="col s12">
+            <input type="text" placeholder="MM/AAAA" mask="00/0000" />
+        </div>
+        <div class="col s12">
+            <input type="text" placeholder="Descripcion" mask="A{20}" />
+        </div>
+    </div>
+</div>
+
+
+<app-cargando *ngIf="cargando==true"></app-cargando>
+
+<simple-notifications [options]="options"></simple-notifications>
+
+<app-footer *ngIf="cargando==false"></app-footer>
